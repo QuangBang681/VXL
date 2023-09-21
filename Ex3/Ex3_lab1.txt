@@ -1,0 +1,58 @@
+  int status_count_ver = 10;
+  int status_count_hor = 10;
+  while (1)
+  {
+	  if (status_count_ver <= 10 && status_count_ver > 5)
+	  {
+		  HAL_GPIO_WritePin(GPIOA, RED_LED_Pin, SET);
+		  HAL_GPIO_WritePin(GPIOA, YELLOW_LED_Pin, RESET);
+		  HAL_GPIO_WritePin(GPIOA, GREEN_LED_Pin, RESET);
+		  status_count_ver--;
+	  }
+	  else if (status_count_ver <= 5 && status_count_ver > 2)
+	  {
+		  HAL_GPIO_WritePin(GPIOA, RED_LED_Pin, RESET);
+		  HAL_GPIO_WritePin(GPIOA, YELLOW_LED_Pin, RESET);
+		  HAL_GPIO_WritePin(GPIOA, GREEN_LED_Pin, SET);
+		  status_count_ver--;
+	  }
+	  else if (status_count_ver <= 2 && status_count_ver > 0)
+	  {
+		  HAL_GPIO_WritePin(GPIOA, RED_LED_Pin, RESET);
+		  HAL_GPIO_WritePin(GPIOA, YELLOW_LED_Pin, SET);
+		  HAL_GPIO_WritePin(GPIOA, GREEN_LED_Pin, RESET);
+		  status_count_ver--;
+	  }
+
+	  if (status_count_hor <= 10 && status_count_hor > 7)
+	  {
+		  HAL_GPIO_WritePin(GPIOB, RED_2_Pin, RESET);
+		  HAL_GPIO_WritePin(GPIOB, YELLOW_2_Pin, RESET);
+		  HAL_GPIO_WritePin(GPIOB, GREEN_2_Pin, SET);
+		  status_count_hor--;
+	  }
+	  else if (status_count_hor <= 7 && status_count_hor > 5)
+	  {
+		  HAL_GPIO_WritePin(GPIOB, RED_2_Pin, RESET);
+		  HAL_GPIO_WritePin(GPIOB, YELLOW_2_Pin, SET);
+		  HAL_GPIO_WritePin(GPIOB, GREEN_2_Pin, RESET);
+		  status_count_hor--;
+	  }
+	  else if (status_count_hor <= 5 && status_count_hor > 0)
+	  {
+		  HAL_GPIO_WritePin(GPIOB, RED_2_Pin, SET);
+		  HAL_GPIO_WritePin(GPIOB, YELLOW_2_Pin, RESET);
+		  HAL_GPIO_WritePin(GPIOB, GREEN_2_Pin, RESET);
+		  status_count_hor--;
+	  }
+	  if (status_count_hor == 0)
+		  status_count_hor = 10;
+	  if (status_count_ver == 0)
+		  status_count_ver = 10;
+
+	  HAL_Delay(1000);
+
+    /* USER CODE END WHILE */
+
+    /* USER CODE BEGIN 3 */
+  }
