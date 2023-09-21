@@ -1,4 +1,5 @@
-HAL_GPIO_WritePin(RED_LED_GPIO_Port, RED_LED_Pin, GPIO_PIN_SET);  
+HAL_GPIO_WritePin(RED_LED_GPIO_Port, RED_LED_Pin, SET);  
+HAL_GPIO_WritePin(YELLOW_LED_GPIO_Port, YELLOW_LED_Pin, RESET);  
 while (1)
   {
 	  HAL_GPIO_TogglePin(RED_LED_GPIO_Port, RED_LED_Pin);
