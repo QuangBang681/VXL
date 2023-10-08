@@ -1,0 +1,15 @@
+Báo cáo 1 (nếu "if" ở dòng 1 bị thiếu):
+Nếu câu lệnh "if" ở dòng 1 bị thiếu, mã code sẽ không hoạt động theo cách dự định. Mục đích của câu lệnh "if" này là kiểm tra xem timer0_flag có bằng 1 không. Nếu điều kiện này không được kiểm tra, mã code bên trong khối "if" sẽ thực thi mà không có bất kỳ sự trễ nào hoặc điều kiện nào, điều này có nghĩa là HAL_GPIO_TogglePin(LED_RED_GPIO_Port, LED_RED_Pin); sẽ được thực hiện liên tục mà không có bất kỳ trễ nào hoặc điều kiện nào để kiểm soát hành vi của nó. Điều này có thể dẫn đến việc LED chớp sáng rất nhanh hoặc có vẻ như luôn bật do thiếu điều kiện hoặc độ trễ để kiểm soát hành vi của nó.
+
+Báo cáo 2 (nếu "setTimer0(1)" được sử dụng ở dòng 1):
+Nếu bạn thay đổi dòng 1 thành setTimer0(1);, khoảng thời gian của hẹn giờ sẽ được đặt là 1 mili giây. Sau đó, trong vòng lặp while, bạn đang chờ timer0_flag trở thành 1 trước khi chuyển đổi trạng thái của LED. Tuy nhiên, với khoảng thời gian hẹn giờ rất ngắn 1 mili giây, rất có thể rằng timer0_flag sẽ được kiểm tra rất thường xuyên và LED sẽ chuyển đổi trạng thái rất nhanh chóng. Thực tế, điều này sẽ dẫn đến việc LED nhấp nháy cực kỳ nhanh, gần như có vẻ như luôn bật do sự thiếu điều kiện hoặc độ trễ rất ngắn giữa các lần kiểm tra.
+
+Báo cáo 3 (nếu "setTimer0(10)" được sử dụng ở dòng 1):
+Nếu bạn thay đổi dòng 1 thành setTimer0(10);, khoảng thời gian hẹn giờ sẽ được đặt là 10 mili giây. Điều này có nghĩa là timer0_flag sẽ được kiểm tra mỗi 10 mili giây. So với tình huống 2 với khoảng thời gian là 1 mili giây, sự chuyển đổi trạng thái của LED sẽ xảy ra chậm hơn, nhưng vẫn tương đối nhanh. LED sẽ nhấp nháy với tần suất khoảng 100 lần mỗi giây (10 mili giây cho mỗi lần chuyển đổi), đó là tần suất khá nhanh nhưng chậm hơn so với khoảng thời gian là 1 mili giây trong tình huống 2.
+
+Tóm lại, việc thay đổi khoảng thời gian hẹn giờ ở dòng 1 ảnh hưởng đến tần suất timer0_flag được kiểm tra, và từ đó ảnh hưởng đến tốc độ nhấp nháy của LED. Khoảng thời gian nhỏ dẫn đến nhấp nháy nhanh hơn, trong khi khoảng thời gian lớn dẫn đến nhấp nháy chậm hơn.
+
+
+
+
+
