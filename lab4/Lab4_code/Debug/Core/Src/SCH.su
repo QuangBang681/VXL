@@ -1,0 +1,6 @@
+../Core/Src/SCH.c:13:6:deletetask	4	static
+../Core/Src/SCH.c:17:6:SCH_Init	4	static
+../Core/Src/SCH.c:21:6:SCH_Add_Task	24	static
+../Core/Src/SCH.c:32:6:SCH_Update	16	static
+../Core/Src/SCH.c:43:6:SCH_Dispatch_Tasks	16	static
+../Core/Src/SCH.c:52:6:SCH_Delete_Task	24	static
